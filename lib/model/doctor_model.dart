@@ -1,4 +1,3 @@
-
 class Doctor {
   String? userId,
       userType = 'Doctor',
@@ -8,28 +7,39 @@ class Doctor {
       password,
       special,
       address,
-      qualifiactions;
-  DateTime? joinedDate;
+      licence,
+      qualification,
+      image;
+  String? createdAt;
+  late String? pushToken;
+  late String? lastActive;
+  late bool? isOnline;
+  late String? about;
   // MosqueModel? mosqueModel;
-  Doctor({
-    this.userId,
-    this.userType,
-    this.name,
-    this.phoneNumber,
-    this.email,
-    this.password,
-    this.special,
-    this.address,
-    this.qualifiactions,
-    this.joinedDate,
-  });
+  Doctor(
+      {this.userId,
+      this.userType,
+      this.name,
+      this.phoneNumber,
+      this.email,
+      this.password,
+      this.special,
+      this.address,
+      this.licence,
+      this.createdAt,
+      this.image,
+      this.qualification,
+      this.pushToken,
+      this.about,
+      this.isOnline,
+      this.lastActive});
 
-  Doctor.fromJson( map) {
+  Doctor.fromJson(map) {
 // ignore: unnecessary_null_comparison
     if (map == null) {
       return;
     }
-
+    userId = map['userId'];
     userType = map['userType'];
     name = map['name'];
     phoneNumber = map['phoneNumber'];
@@ -37,8 +47,15 @@ class Doctor {
     password = map['password'];
     special = map['special'];
     address = map['address'];
-    qualifiactions = map['qualifiactions'];
-    joinedDate = map['joinedDate'].toDate();
+    licence = map['licence'];
+    qualification = map['qualification'];
+    image = map['image'];
+    createdAt = map['createdAt'];
+    about = map['about'];
+    pushToken = map['pushToken'];
+    lastActive = map['lastActive'];
+    isOnline = map['isOnline'];
+ 
     // mosqueModel = MosqueModel.fromJson(map['mosqueModel']);
   }
   toJson() {
@@ -51,8 +68,13 @@ class Doctor {
       'password': password,
       'special': special,
       'address': address,
-      'qualifiactions': qualifiactions,
-      'joinedDate':joinedDate
+      'licence': licence,
+      'image': image,
+      'qualification': qualification,
+      'createdAt': createdAt,
+      'pushToken': pushToken,
+      'lastActive': lastActive,
+      'isOnline': isOnline
       // 'mosqueModel': mosqueModel,
     };
   }

@@ -8,15 +8,18 @@ class BackBtn extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(
           0, MediaQuery.of(context).size.height * 0.1, 0, 0),
-      child: TextButton(
-          // shape: CircleBorder(),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back,
-            size: MediaQuery.of(context).size.height * 0.045,
-          )),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: TextButton(
+            // shape: CircleBorder(),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_forward,
+              size: MediaQuery.of(context).size.height * 0.045,
+            )),
+      ),
     );
   }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>906206889213-el7bigt8jkbnp599mgale353b7rtvscm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.906206889213-el7bigt8jkbnp599mgale353b7rtvscm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAl6nKR138TF2OHIbelSJrhZdZF6rJiE0s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>906206889213</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.doctor</string>
+	<key>PROJECT_ID</key>
+	<string>medical-advice-ap</string>
+	<key>STORAGE_BUCKET</key>
+	<string>medical-advice-ap.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:906206889213:ios:a3e6a5fdb2fe4e26d62a94</string>
+</dict>
+</plist>

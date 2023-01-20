@@ -1,12 +1,17 @@
 import 'package:badges/badges.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_app/data/json.dart';
 import 'package:doctor_app/pages/doctor_profile_page.dart';
 import 'package:doctor_app/theme/colors.dart';
 import 'package:doctor_app/widgets/avatar_image.dart';
 import 'package:doctor_app/widgets/doctor_box.dart';
 import 'package:doctor_app/widgets/textbox.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
+
+import '../model/doctor_model.dart';
 
 class DoctorPage extends StatefulWidget {
   const DoctorPage({Key? key}) : super(key: key);
@@ -16,6 +21,8 @@ class DoctorPage extends StatefulWidget {
 }
 
 class _DoctorPageState extends State<DoctorPage> {
+  var currentUser = FirebaseAuth.instance.currentUser?.uid;
+  List<Doctor> list = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +38,7 @@ class _DoctorPageState extends State<DoctorPage> {
         //  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.only(right: 10, left: 10),
             child: Icon(
               Icons.info,
               color: Colors.grey,
@@ -90,22 +97,48 @@ class _DoctorPageState extends State<DoctorPage> {
   }
 
   getDoctorList() {
-    return new StaggeredGridView.countBuilder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      crossAxisCount: 4,
-      itemCount: doctors.length,
-      itemBuilder: (BuildContext context, int index) => DoctorBox(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => DoctorProfilePage()));
-          },
-          index: index,
-          doctor: doctors[index]),
-      staggeredTileBuilder: (int index) =>
-          new StaggeredTile.count(2, index.isEven ? 3 : 2),
-      mainAxisSpacing: 4,
-      crossAxisSpacing: 4,
-    );
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('Doctors')
+            .where('userId', isNotEqualTo: currentUser)
+            .snapshots(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+            case ConnectionState.none:
+              return Center(child: CircularProgressIndicator());
+            case ConnectionState.active:
+            case ConnectionState.done:
+              final data = snapshot.data!.docs;
+              list = data.map((e) => Doctor.fromJson(e.data())).toList();
+          }
+          if (list.isNotEmpty) {
+            return StaggeredGridView.countBuilder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              crossAxisCount: 4,
+              itemCount: list.length,
+              itemBuilder: (BuildContext context, int index) => DoctorBox(
+                  onTap: () {
+                    Get.to(
+                      DoctorProfilePage(
+                        doctor: list[index],
+                      ),
+                    );
+                 
+                  },
+                  index: index,
+                  doctor: list[index]),
+              staggeredTileBuilder: (int index) =>
+                  new StaggeredTile.count(2, index.isEven ? 3 : 2),
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 4,
+            );
+          } else {
+            return Center(
+              child: Text('no data foud'),
+            );
+          }
+        });
   }
 }

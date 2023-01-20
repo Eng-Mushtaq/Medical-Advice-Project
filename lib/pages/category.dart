@@ -1,21 +1,18 @@
 import 'dart:io';
-import 'package:doctor_app/pages/patientLogin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-// import 'package:medkit/animations/fadeAnimation.dart';
-// import 'package:medkit/animations/bottomAnimation.dart';
-
+import 'package:get/get.dart';
 import '../animations/bottomAnimation.dart';
 import '../animations/fadeAnimation.dart';
 import '../theme/colors.dart';
-import 'doctorLogin.dart';
-import 'doctorSignUp.dart';
+import '../widgets/backBtnAndImage.dart';
+import 'SignUp.dart';
 
 class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
+    double width = Get.width;
     double height = MediaQuery.of(context).size.height;
 
     Future<bool> _onWillPop() async {
@@ -25,10 +22,10 @@ class Category extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
               title: new Text(
-                "Exit Application",
+                "اغلاق التطبيق",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              content: new Text("Are You Sure?"),
+              content: new Text("هل انت متأكد"),
               actions: <Widget>[
                 // usually buttons at the bottom of the dialog
                 TextButton(
@@ -39,7 +36,7 @@ class Category extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.white)),
                   child: new Text(
-                    "No",
+                    "لا",
                     style: TextStyle(color: Colors.blue),
                   ),
                   onPressed: () {
@@ -50,7 +47,7 @@ class Category extends StatelessWidget {
                   // shape: StadiumBorder(),
                   // color: Colors.white,
                   child: new Text(
-                    "Yes",
+                    "نعم",
                     style: TextStyle(color: Colors.red),
                   ),
                   onPressed: () {
@@ -80,18 +77,18 @@ class Category extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      TextButton(
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
-                          CircleBorder(),
-                        )),
-                        onPressed: () =>
-                            Navigator.pushNamed(context, '/AboutUs'),
-                        child: Icon(
-                          Icons.info,
-                          size: height * 0.04,
-                        ),
-                      ),
+                      BackBtn(),
+                      // TextButton(
+                      //   style: ButtonStyle(
+                      //       shape: MaterialStateProperty.all(
+                      //     CircleBorder(),
+                      //   )),
+                      //   onPressed: () {},
+                      //   child: Icon(
+                      //     Icons.info,
+                      //     size: height * 0.04,
+                      //   ),
+                      // ),
                       Text('نوع المستخدم', style: titleText
                           //  color: Colors.black, fontSize: height * 0.04),
                           )
@@ -144,7 +141,7 @@ class Category extends StatelessWidget {
                   )
                 ],
               )
-          ],
+            ],
           ),
         ),
       ),
@@ -161,28 +158,25 @@ class Category extends StatelessWidget {
           shape: StadiumBorder(),
         ),
         onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   CupertinoPageRoute(
-          //     builder: (context) => DoctorSignUpScreen(),
-          //   ),
-          // );
           if (categoryText == 'دكتور') {
             Navigator.push(
               context,
               CupertinoPageRoute(
-                builder: (context) => SignUpScreen(isDoctor: true,),
-                
+                builder: (context) => SignUpScreen(
+                  isDoctor: true,
+                ),
               ),
             );
             // Navigator.pushNamed(context, '/DoctorLogin');
           } else {
-             Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => SignUpScreen(isDoctor: false ,),
-            ),
-          );
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => SignUpScreen(
+                  isDoctor: false,
+                ),
+              ),
+            );
             // Navigator.pushNamed(context, '/PatientLogin');
           }
         },

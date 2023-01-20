@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "906206889213",
+    "project_id": "medical-advice-ap",
+    "storage_bucket": "medical-advice-ap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906206889213:android:766245df83a3187cd62a94",
+        "android_client_info": {
+          "package_name": "com.example.doctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906206889213-qffi9l2ggi7mhvib4v62m3in3f9lel88.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzR3HXWYvzVJ645yKpHGNSUGbRUcfWYKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906206889213-qffi9l2ggi7mhvib4v62m3in3f9lel88.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

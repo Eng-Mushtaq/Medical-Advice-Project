@@ -51,22 +51,18 @@ class _HomePageState extends State<HomePage> {
           Container(
             child: Text("مرحبا ,",
                 style: subTitle.copyWith(
-                    fontSize: 23, color: primary, fontWeight: FontWeight.w500)
-                //  TextStyle(
-                //     fontSize: 23, color: primary, fontWeight: FontWeight.w500),
-                ),
+                  fontSize: 23,
+                  color: primary,
+                  fontWeight: FontWeight.w500,
+                )),
           ),
           SizedBox(
             height: 5,
           ),
           Container(
-              child: Text(
-                  // "Let's Find Your Doctor",
-                  'دعنا نبحث لك عن طبيب',
+              child: Text('دعنا نبحث لك عن طبيب',
                   style: subTitle.copyWith(
-                      fontSize: 18, fontWeight: FontWeight.w600)
-                  //  TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  )),
+                      fontSize: 18, fontWeight: FontWeight.w600))),
           SizedBox(
             height: 15,
           ),
@@ -146,6 +142,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 PopularDoctor(
                   doctor: doctors[2],
+                ),
+                PopularDoctor(
+                  doctor: doctors[3],
                 ),
               ],
             ),

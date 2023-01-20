@@ -1,22 +1,19 @@
+import 'package:doctor_app/controller/loginController.dart';
 import 'package:doctor_app/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../animations/bottomAnimation.dart';
 import '../widgets/backBtnAndImage.dart';
 import '../widgets/textField.dart';
 
-class DoctorLogin extends StatefulWidget {
-  @override
-  _DoctorLoginState createState() => _DoctorLoginState();
-}
+class LoginScreen extends StatelessWidget {
+  final LoginController loginController = Get.find();
 
-final emial = TextEditingController();
-final _controllerpassword = TextEditingController();
-final _controllerCNIC = TextEditingController();
+  final emialController = TextEditingController();
+  final passwordController = TextEditingController();
 
-class _DoctorLoginState extends State<DoctorLogin> {
-  //bool validatePhoneVar = false;
   bool validateCNICVar = false;
   bool validateName = false;
 
@@ -40,10 +37,10 @@ class _DoctorLoginState extends State<DoctorLogin> {
               height: height,
               child: Stack(
                 children: <Widget>[
-                  BackBtn(),
                   ImageAvatar(
                     assetImage: 'assets/bigDoc.png',
                   ),
+                  BackBtn(),
                   Container(
                     width: width,
                     height: height,
@@ -59,20 +56,13 @@ class _DoctorLoginState extends State<DoctorLogin> {
                         Text(
                           'تسجيل الدخول',
                           style: titleText,
-                          // "\t\tLogin",
-                          // style: GoogleFonts.abel(
-                          //     fontSize: height * 0.044,
-                          //     fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: height * 0.05,
                         ),
-                        // nameTextField,
-                        //phoneTextField,
-                        // cnicTextField,
                         textField(
                             inputType: TextInputType.emailAddress,
-                            controller: emial,
+                            controller: emialController,
                             iconData: Icons.email_outlined,
                             lable: ' البريد الالكتروني',
                             onSumbmit: () {
@@ -83,7 +73,7 @@ class _DoctorLoginState extends State<DoctorLogin> {
                         ),
                         textField(
                             inputType: TextInputType.text,
-                            controller: _controllerpassword,
+                            controller: passwordController,
                             iconData: Icons.password_outlined,
                             lable: ' كلمة المرور ',
                             onSumbmit: () {
@@ -100,7 +90,10 @@ class _DoctorLoginState extends State<DoctorLogin> {
                               backgroundColor: Colors.white,
                               shape: StadiumBorder(),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              loginController.signIn(emialController.text,
+                                  passwordController.text);
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -114,11 +107,6 @@ class _DoctorLoginState extends State<DoctorLogin> {
                                 Text('تسجيل الدخول',
                                     style:
                                         subTitle.copyWith(color: Colors.black)),
-                                //   style: TextStyle(
-                                //       letterSpacing: 2,
-                                //       fontWeight: FontWeight.bold,
-                                //       fontSize: height * 0.022),
-                                // )
                               ],
                             ),
                           ),
@@ -147,23 +135,4 @@ class _DoctorLoginState extends State<DoctorLogin> {
           )),
     );
   }
-}
-
-
-
-class DoctorDetails {
-  final String providerDetails;
-  final String userName;
-  final String photoUrl;
-  final String userEmail;
-  final List<ProviderDoctorDetails> providerData;
-
-  DoctorDetails(this.providerDetails, this.userName, this.photoUrl,
-      this.userEmail, this.providerData);
-}
-
-class ProviderDoctorDetails {
-  ProviderDoctorDetails(this.providerDetails);
-
-  final String providerDetails;
 }

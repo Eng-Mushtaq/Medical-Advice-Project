@@ -2,10 +2,10 @@ import 'package:doctor_app/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'category.dart';
-import 'doctorLogin.dart';
+import 'login_page.dart';
 
 class OnBoarding extends StatelessWidget {
   @override
@@ -14,27 +14,19 @@ class OnBoarding extends StatelessWidget {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
       home: OnBoardingSlider(
+
         headerBackgroundColor: Colors.white,
-        finishButtonText: 'انشاء حساب',
+        finishButtonText: 'انشاء حساب ',
         finishButtonTextStyle: GoogleFonts.tajawal(),
         onFinish: () {
-          Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => Category(),
-            ),
-          );
+        Get.to(Category());
         },
-        trailingFunction: (){
-          Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (context) => DoctorLogin(),
-                ),
-              );
-        },
-        skipTextButton: Text('تخطي', style: GoogleFonts.tajawal()),
         trailing: Text('تسجيل الدخول', style: GoogleFonts.tajawal()),
+        trailingFunction: (){
+       Get.to(LoginScreen());
+        },
+
+        skipTextButton: Text('تخطي', style: GoogleFonts.tajawal()),
         background: [
           Image.asset(
             'assets/doctors.png',
@@ -61,11 +53,9 @@ class OnBoarding extends StatelessWidget {
                 SizedBox(
                   height: 480,
                 ),
-                Text('مرحبا بكـ', style: title2Text
-                    //  GoogleFonts.tajawal().copyWith(
-                    //     fontWeight: FontWeight.bold,
-                    //     fontSize: 24,
-                    //     color: Colors.blue),
+                Text('مرحبا بكـ',
+                    style: title2Text
+
                     ),
                 SizedBox(
                   height: 10,

@@ -1,3 +1,4 @@
+import 'package:doctor_app/model/doctor_model.dart';
 import 'package:doctor_app/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class DoctorBox extends StatelessWidget {
       required this.onTap})
       : super(key: key);
   final int index;
-  final doctor;
+  final Doctor doctor;
   final GestureTapCallback onTap;
 
   @override
@@ -40,13 +41,13 @@ class DoctorBox extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                          image: NetworkImage(doctor["image"]),
+                          image: NetworkImage(doctor.image.toString()),
                           fit: BoxFit.cover),
                     )),
               ),
               SizedBox(height: 10),
               Text(
-                doctor["name"],
+                doctor.name.toString(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: subTitle.copyWith(
@@ -57,7 +58,7 @@ class DoctorBox extends StatelessWidget {
               ),
               SizedBox(height: 3),
               Text(
-                doctor["skill"],
+                doctor.qualification.toString(),
                 style: subTitle.copyWith(
                   color: Colors.grey,
                   fontSize: 13,
@@ -77,7 +78,8 @@ class DoctorBox extends StatelessWidget {
                     width: 2,
                   ),
                   Text(
-                    " التقييم ${doctor["review"]} ",
+                    " التقييم ${5} ",
+                    // " التقييم ${doctor["review"]} ",
                     style: subTitle.copyWith(fontSize: 12),
                     //  TextStyle(fontSize: 12),
                   )
