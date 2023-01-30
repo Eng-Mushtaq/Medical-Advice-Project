@@ -23,116 +23,126 @@ class LoginScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: SafeArea(
-            child: Container(
-              width: width,
-              height: height,
-              child: Stack(
-                children: <Widget>[
-                  ImageAvatar(
-                    assetImage: 'assets/bigDoc.png',
-                  ),
-                  BackBtn(),
-                  Container(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Obx(
+          () => Scaffold(
+              resizeToAvoidBottomInset: false,
+              body: Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom * 0.4),
+                child: SafeArea(
+                  child: Container(
                     width: width,
-                    height: height,
-                    margin:
-                        EdgeInsets.fromLTRB(width * 0.03, 0, width * 0.03, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    // height: height,
+                    child: Stack(
                       children: <Widget>[
-                        SizedBox(
-                          height: height * 0.05,
+                        ImageAvatar(
+                          assetImage: 'assets/bigDoc.png',
                         ),
-                        Text(
-                          'تسجيل الدخول',
-                          style: titleText,
-                        ),
-                        SizedBox(
-                          height: height * 0.05,
-                        ),
-                        textField(
-                            inputType: TextInputType.emailAddress,
-                            controller: emialController,
-                            iconData: Icons.email_outlined,
-                            lable: ' البريد الالكتروني',
-                            onSumbmit: () {
-                              FocusScope.of(context).unfocus();
-                            }),
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
-                        textField(
-                            inputType: TextInputType.text,
-                            controller: passwordController,
-                            iconData: Icons.password_outlined,
-                            lable: ' كلمة المرور ',
-                            onSumbmit: () {
-                              FocusScope.of(context).unfocus();
-                            }),
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
-                        SizedBox(
+                        BackBtn(),
+                        Container(
                           width: width,
-                          height: height * 0.07,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              shape: StadiumBorder(),
-                            ),
-                            onPressed: () {
-                              loginController.signIn(emialController.text,
-                                  passwordController.text);
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                WidgetAnimator(
-                                  Image(
-                                    image: AssetImage('assets/google.png'),
-                                    height: height * 0.035,
+                          height: height,
+                          margin: EdgeInsets.fromLTRB(
+                              width * 0.03, 0, width * 0.03, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              SizedBox(
+                                height: height * 0.1,
+                              ),
+                              Text(
+                                'تسجيل الدخول',
+                                style: titleText,
+                              ),
+                              // SizedBox(
+                              //   height: height * 0.05,
+                              // ),
+                              textField(
+                                  inputType: TextInputType.emailAddress,
+                                  controller: emialController,
+                                  iconData: Icons.email_outlined,
+                                  lable: ' البريد الالكتروني',
+                                  onSumbmit: () {
+                                    FocusScope.of(context).unfocus();
+                                  }),
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
+                              textField(
+                                  inputType: TextInputType.text,
+                                  controller: passwordController,
+                                  iconData: Icons.password_outlined,
+                                  lable: ' كلمة المرور ',
+                                  onSumbmit: () {
+                                    FocusScope.of(context).unfocus();
+                                  }),
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
+                             SizedBox(
+                                      width: width,
+                                      height: height * 0.07,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.white,
+                                          shape: StadiumBorder(),
+                                        ),
+                                        onPressed: () {
+                                          loginController.signIn(
+                                              emialController.text,
+                                              passwordController.text);
+                                        },
+                                        child: loginController.isLoading.value
+                                  ? CircularProgressIndicator()
+                                  :  Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            WidgetAnimator(
+                                              Image(
+                                                image: AssetImage(
+                                                    'assets/google.png'),
+                                                height: height * 0.035,
+                                              ),
+                                            ),
+                                            SizedBox(width: height * 0.015),
+                                            Text('تسجيل الدخول',
+                                                style: subTitle.copyWith(
+                                                    color: Colors.black)),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              WidgetAnimator(
+                                Text(
+                                  'You Will be asked Question regarding your Qualifications!',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.5),
                                   ),
                                 ),
-                                SizedBox(width: height * 0.015),
-                                Text('تسجيل الدخول',
-                                    style:
-                                        subTitle.copyWith(color: Colors.black)),
-                              ],
-                            ),
+                              ),
+                              SizedBox(
+                                height: height * 0.2,
+                              )
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
-                        WidgetAnimator(
-                          Text(
-                            'You Will be asked Question regarding your Qualifications!',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black.withOpacity(0.5),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.2,
-                        )
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          )),
-    );
+                ),
+              )),
+        ));
   }
 }

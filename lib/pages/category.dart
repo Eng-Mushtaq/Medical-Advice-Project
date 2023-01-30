@@ -11,8 +11,8 @@ import 'SignUp.dart';
 class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // double width = MediaQuery.of(context).size.width;
-    double width = Get.width;
+    double width = MediaQuery.of(context).size.width;
+    // double width = Get.width;
     double height = MediaQuery.of(context).size.height;
 
     Future<bool> _onWillPop() async {
@@ -66,9 +66,9 @@ class Category extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              SizedBox(
-                height: height * 0.065,
-              ),
+              // SizedBox(
+              //   height: height * 0.065,
+              // ),
               FadeAnimation(
                 0.3,
                 Container(
@@ -77,7 +77,6 @@ class Category extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      BackBtn(),
                       // TextButton(
                       //   style: ButtonStyle(
                       //       shape: MaterialStateProperty.all(
@@ -91,7 +90,8 @@ class Category extends StatelessWidget {
                       // ),
                       Text('نوع المستخدم', style: titleText
                           //  color: Colors.black, fontSize: height * 0.04),
-                          )
+                          ),
+                      BackBtn(),
                     ],
                   ),
                 ),

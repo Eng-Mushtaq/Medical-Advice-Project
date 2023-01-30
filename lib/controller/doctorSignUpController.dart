@@ -9,9 +9,7 @@ import '../pages/home.dart';
 import '../services/doctorService.dart';
 import '../theme/colors.dart';
 
-
-
-class SignUpController extends GetxController {
+class DoctorSignUpController extends GetxController {
   var auth = FirebaseAuth.instance;
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -28,20 +26,18 @@ class SignUpController extends GetxController {
 
   final CollectionReference _userCollectionRef =
       FirebaseFirestore.instance.collection("Doctors");
-  Doctor? doctorData;
+  var doctorData;
   final box = GetStorage();
 
-
-@override
+  @override
   void onInit() {
-  if (box.read('userId')!=null) {
+    if (box.read('userId') != null) {
       getUserdata(box.read('userId'));
     }
     super.onInit();
   }
 
-  
-  void SignUp(
+  void SignUp(String? userype
       // {required String? email, required String? password}
       ) async {
     try {
@@ -53,7 +49,7 @@ class SignUpController extends GetxController {
       )
           .then(
         (value) {
-          addUserToFirestore(value.user?.uid);
+          addUserToFirestore(value.user?.uid, userype);
         },
       );
       Get.offAll(const Home());
@@ -81,25 +77,28 @@ class SignUpController extends GetxController {
     }
   }
 
-  void addUserToFirestore(String? userId) async {
+  void addUserToFirestore(String? userId, String? userType) async {
     await FirestoreUsers()
         .addUserToFirestore(Doctor(
-            userId: userId,
-            email: emailController.text,
-            name: nameController.text,
-            password: passwordController.text,
-            userType: 'doctor',
-            phoneNumber: phoneController.text,
-            special: specialController.text,
-            address: addressController.text,
-            licence: licenceController.text,
-            image:imageController.text,
-            qualification:qualificationController.text,
-            // createdAt: DateTime.now(),
-            ))
+      userId: userId,
+      email: emailController.text,
+      name: nameController.text,
+      password: passwordController.text,
+      userType: userType,
+      phoneNumber: phoneController.text,
+      special: specialController.text,
+      address: addressController.text,
+      licence: licenceController.text,
+      image: 'https://cdn-icons-png.flaticon.com/512/5087/5087579.png',
+      qualification: qualificationController.text,
+      createdAt: DateTime.now().toString(),
+    ))
         .then((value) {
-      getUserdata(userId!);
       box.write('userId', userId);
+      box.write('userName', nameController.text);
+      box.write('email', emailController.text);
+      box.write('phone', phoneController.text);
+      getUserdata(userId!);
       emailController.text = '';
       nameController.text = '';
       passwordController.text = '';
@@ -107,7 +106,7 @@ class SignUpController extends GetxController {
       specialController.text = '';
       addressController.text = '';
       licenceController.text = '';
-     qualificationController.text = '';
+      qualificationController.text = '';
       imageController.text = '';
     });
     //     .then((value) {
@@ -115,12 +114,13 @@ class SignUpController extends GetxController {
     // });
   }
 
-  Future<Doctor?> getUserdata(String uId) async {
+  Future<void> getUserdata(String uId) async {
     try {
       DocumentSnapshot doc = await _userCollectionRef.doc(uId).get();
-      doctorData = Doctor.fromJson(doc);
+      doctorData = doc.data();
       isLoading.value = false;
-      return doctorData;
+      // print('****************${doctorData} ***************');
+      // return doctorData;
     } catch (e) {
       printError(info: e.toString());
     }

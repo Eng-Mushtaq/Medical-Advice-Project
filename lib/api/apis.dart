@@ -4,9 +4,12 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_app/model/doctor_model.dart';
+import 'package:doctor_app/pages/category.dart';
+import 'package:doctor_app/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart';
 
 import '../model/message.dart';
@@ -95,16 +98,16 @@ class APIs {
     final time = DateTime.now().millisecondsSinceEpoch.toString();
 
     final chatUser = Doctor(
-        userId: user.uid,
-        name: user.displayName.toString(),
-        email: user.email.toString(),
-        about: "Hey, I'm using We Chat!",
-        image: user.photoURL.toString(),
-        createdAt: time,
-        isOnline: false,
-        lastActive: time,
-        pushToken: '',
-        );
+      userId: user.uid,
+      name: user.displayName.toString(),
+      email: user.email.toString(),
+      about: "Hey, I'm using We Chat!",
+      image: user.photoURL.toString(),
+      createdAt: time,
+      isOnline: false,
+      lastActive: time,
+      pushToken: '',
+    );
 
     return await firestore
         .collection('users')
@@ -206,10 +209,8 @@ class APIs {
 
     final ref = firestore.collection(
         'chats/${getConversationID(chatUser.userId.toString())}/messages/');
-    await ref.doc(time).set(message.toJson())
-    .then(
-          (value) =>
-          sendPushNotification(
+    await ref.doc(time).set(message.toJson()).then(
+          (value) => sendPushNotification(
               chatUser, type == messageType.text ? msg : 'image'),
         );
   }
@@ -252,5 +253,13 @@ class APIs {
     //updating image in firestore database
     final imageUrl = await ref.getDownloadURL();
     await sendMessage(chatUser, imageUrl, messageType.image);
+  }
+
+  static logOut() {
+    auth.signOut().then(
+          (value) => Get.offAll(
+            () => LoginScreen(),
+          ),
+        );
   }
 }

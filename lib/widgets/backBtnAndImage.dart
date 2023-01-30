@@ -37,12 +37,12 @@ class ImageAvatar extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Positioned(
-          top: height * 0.05,
+          top: height * 0.02,
           left: width - 250,
           child: Opacity(
             opacity: 0.25,
             child: CircleAvatar(
-              radius: height * 0.2,
+              radius: height * 0.17,
               backgroundColor: Colors.black54,
               child: Image(
                 image: AssetImage(assetImage!),

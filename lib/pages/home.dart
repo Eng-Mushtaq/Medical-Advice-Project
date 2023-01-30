@@ -5,6 +5,7 @@ import 'package:doctor_app/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'accountPage.dart';
 import 'doctor_page.dart';
 import 'home_page.dart';
 
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
     DoctorPage(),
     ChatPage(),
     DoctorsChat(),
-    Container()
+    ProfileScrean()
   ];
 
   int _currentIndex = 0;
