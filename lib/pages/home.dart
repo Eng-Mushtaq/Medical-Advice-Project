@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:doctor_app/pages/Doctor/appointmentPage.dart';
 import 'package:doctor_app/pages/chat_page.dart';
 import 'package:doctor_app/pages/people.dart';
 import 'package:doctor_app/theme/colors.dart';
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
     HomePage(),
     DoctorPage(),
     ChatPage(),
-    DoctorsChat(),
+    AppointmentsPage(),
     ProfileScrean()
   ];
 

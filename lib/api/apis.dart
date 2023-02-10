@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_app/model/booking.dart';
 import 'package:doctor_app/model/doctor_model.dart';
+import 'package:doctor_app/model/pationt.dart';
 import 'package:doctor_app/pages/category.dart';
 import 'package:doctor_app/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,6 +15,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart';
 
 import '../model/message.dart';
+import '../pages/succes_booking_page.dart';
 
 class APIs {
   // for authentication
@@ -32,11 +35,12 @@ class APIs {
 
   // for accessing firebase messaging (Push Notification)
   static FirebaseMessaging fMessaging = FirebaseMessaging.instance;
+  static List<Doctor> doctors = [];
+
 
   // for getting firebase messaging token
   static Future<void> getFirebaseMessagingToken() async {
     await fMessaging.requestPermission();
-
     await fMessaging.getToken().then((t) {
       if (t != null) {
         me.pushToken = t;
@@ -262,4 +266,43 @@ class APIs {
           ),
         );
   }
+
+  static Future makeAppointment(
+    {
+    String? docId,
+    String? doctor_name,
+    String? doctor_profile,
+    String? patId,
+    String? date,
+    String? day,
+    String? time,}
+  ) async {
+    try {
+      await firestore.collection('bookings').add(Booking(
+            doctorId: docId,
+            doctor_name: doctor_name,
+            doctor_profile: doctor_profile,
+            createdAt: DateTime.now().toString(),
+            date: date,
+            day: day,
+            pationtId: patId,
+            status: 'cancel',
+            time: time,
+          ).toJson());
+
+      Get.to(() => SuccessBookingPage());
+    } catch (e) {
+      return e;
+    }
+  }
+
+    static Stream<QuerySnapshot<Map<String, dynamic>>> getAppointments(
+      String userId) {
+    return firestore
+        .collection('bookings')
+        .where('pationtId', isEqualTo: userId)
+        .snapshots();
+  }
+
+
 }

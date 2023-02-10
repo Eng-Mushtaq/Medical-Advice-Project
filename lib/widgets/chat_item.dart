@@ -45,7 +45,7 @@ class ChatItem extends StatelessWidget {
                 SizedBox(width: 10),
                 Expanded(
                     child: Container(
-                        height: 70,
+                        height: MediaQuery.of(context).size.height * 0.095,
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -68,16 +68,14 @@ class ChatItem extends StatelessWidget {
                                 )),
                                 SizedBox(width: 3),
                                 Container(
-                                    child: Text(chatData.createdAt.toString(),
+                                    child: Text(chatData. createdAt.toString(),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             fontSize: 11, color: Colors.grey)))
                               ],
                             ),
-                            SizedBox(
-                              height: 3,
-                            ),
+                       
                             Row(
                               children: <Widget>[
                                 Container(
@@ -89,7 +87,7 @@ class ChatItem extends StatelessWidget {
                               ],
                             ),
                             SizedBox(
-                              height: 6,
+                              height: 3,
                             ),
                             Text(
                               chatData.qualification.toString(),

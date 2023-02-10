@@ -1,6 +1,7 @@
-import 'package:doctor_app/data/json.dart';
+
 import 'package:doctor_app/model/doctor_model.dart';
 import 'package:doctor_app/pages/booking_page.dart';
+
 import 'package:doctor_app/pages/chat_screen.dart';
 import 'package:doctor_app/theme/colors.dart';
 import 'package:doctor_app/widgets/avatar_image.dart';
@@ -9,8 +10,6 @@ import 'package:doctor_app/widgets/doctor_info_box.dart';
 import 'package:doctor_app/widgets/mybutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'calender.dart';
 
 class DoctorProfilePage extends StatefulWidget {
   Doctor doctor;
@@ -42,7 +41,11 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
             title: 'حجز موعد',
             // title: "Request For Appointment",
             onTap: () {
-              Get.to(()=>BookingCalendarDemoApp());
+              Get.to(
+                () => BookingScreen(
+                  doctor: widget.doctor,
+                ),
+              );
             }),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -76,7 +79,7 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                     height: 5,
                   ),
                   Text(
-                    "تخصص طب أسنان",
+                    'التخصص : ${widget.doctor.special}',
                     // "Dentist Specialist",
                     style: TextStyle(color: Colors.grey, fontSize: 14),
                   ),

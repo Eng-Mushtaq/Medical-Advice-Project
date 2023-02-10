@@ -98,9 +98,8 @@ class _ChatScreenState extends State<ChatScreen> {
                                   return MessageCard(message: _list[index]);
                                 });
                           } else {
-                            return const Center(
-                              child: Text('Say Hii! 👋',
-                                  style: TextStyle(fontSize: 20)),
+                            return Center(
+                              child: Text('قل مرحباا 👋', style: title2Text),
                             );
                           }
                       }
@@ -252,35 +251,34 @@ class _ChatScreenState extends State<ChatScreen> {
                     onTap: () {
                       if (_showEmoji) setState(() => _showEmoji = !_showEmoji);
                     },
-                    decoration: const InputDecoration(
-                        hintText: 'Type Something...',
-                        hintStyle: TextStyle(
-                            // color: Colors.blueAccent
-                            color: primary),
+                    decoration: InputDecoration(
+                        hintText: 'اكتب هنا ...',
+                        hintStyle: subTitle.copyWith(color: primary),
                         border: InputBorder.none),
                   )),
 
                   //pick image from gallery button
                   IconButton(
-                      onPressed: () async {
-                        final ImagePicker picker = ImagePicker();
+                    onPressed: () async {
+                      final ImagePicker picker = ImagePicker();
 
-                        // Picking multiple images
-                        final List<XFile> images =
-                            await picker.pickMultiImage(imageQuality: 70);
+                      // Picking multiple images
+                      final List<XFile> images =
+                          await picker.pickMultiImage(imageQuality: 70);
 
-                        // uploading & sending image one by one
-                        for (var i in images) {
-                          log('Image Path: ${i.path}');
-                          setState(() => _isUploading = true);
-                          await APIs.sendChatImage(widget.user, File(i.path));
-                          setState(() => _isUploading = false);
-                        }
-                      },
-                      icon: Icon(Icons.image,
-                          color: primary,
-                          //  Colors.blueAccent,
-                          size: 26)),
+                      // uploading & sending image one by one
+                      for (var i in images) {
+                        log('Image Path: ${i.path}');
+                        setState(() => _isUploading = true);
+                        await APIs.sendChatImage(widget.user, File(i.path));
+                        setState(() => _isUploading = false);
+                      }
+                    },
+                    icon: Icon(Icons.image,
+                        color: primary,
+                        //  Colors.blueAccent,
+                        size: 26),
+                  ),
 
                   //take image from camera button
                   IconButton(

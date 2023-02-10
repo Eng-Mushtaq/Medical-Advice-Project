@@ -23,6 +23,7 @@ class DoctorSignUpController extends GetxController {
   var ageController = TextEditingController();
   var genderController = TextEditingController();
   RxBool isLoading = false.obs;
+    List<String>categories = ['طب أسنان', 'امراض  جلدية', 'القلب','جراحة عامة'];
 
   final CollectionReference _userCollectionRef =
       FirebaseFirestore.instance.collection("Doctors");
@@ -52,9 +53,9 @@ class DoctorSignUpController extends GetxController {
           addUserToFirestore(value.user?.uid, userype);
         },
       );
-      Get.offAll(const Home());
+      Get.offAll(()=>const Home());
     } on FirebaseAuthException catch (error) {
-      isLoading.value = true;
+      isLoading.value = false;
       String? title = error.code;
       String? message;
       if (error.code == 'week-password') {
@@ -92,7 +93,7 @@ class DoctorSignUpController extends GetxController {
       image: 'https://cdn-icons-png.flaticon.com/512/5087/5087579.png',
       qualification: qualificationController.text,
       createdAt: DateTime.now().toString(),
-    ))
+    ),)
         .then((value) {
       box.write('userId', userId);
       box.write('userName', nameController.text);

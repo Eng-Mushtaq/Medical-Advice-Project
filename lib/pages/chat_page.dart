@@ -1,6 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_app/data/json.dart';
+
 import 'package:doctor_app/theme/colors.dart';
 import 'package:doctor_app/widgets/avatar_image.dart';
 import 'package:doctor_app/widgets/chat_item.dart';
@@ -48,15 +48,15 @@ class _ChatPageState extends State<ChatPage> {
               .where('userId', isNotEqualTo: currentUser)
               .snapshots(),
           builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-              case ConnectionState.none:
-                return Center(child: CircularProgressIndicator());
-              case ConnectionState.active:
-              case ConnectionState.done:
-                final data = snapshot.data!.docs;
-                list = data.map((e) => Doctor.fromJson(e.data())).toList();
-            }
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                case ConnectionState.none:
+                  return Center(child: CircularProgressIndicator());
+                case ConnectionState.active:
+                case ConnectionState.done:
+                  final data = snapshot.data!.docs;
+                  list = data.map((e) => Doctor.fromJson(e.data())).toList();
+              }
             if (list.isNotEmpty) {
               return SingleChildScrollView(
                 child: Padding(
@@ -96,11 +96,13 @@ class _ChatPageState extends State<ChatPage> {
               );        
             } else {
               return Center(
-                child: Text('no data foud'),
+                child: Text('لا يوجد  بيانات !'),
               );
             }
           },
-        )
+        ),
+       
+
         );
   }
 

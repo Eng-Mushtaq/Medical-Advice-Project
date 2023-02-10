@@ -8,6 +8,7 @@ const primary = Color(0xFF5856d6);
 const mainColor = Color(0xFF000000);
 const secondary = Color(0xFFe54140);
 const appBgColor = Color(0xFFFAFAFA);
+// const appBglor = Colors.;
 
 TextStyle titleText = GoogleFonts.notoKufiArabic()
     .copyWith(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue);

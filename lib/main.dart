@@ -1,5 +1,8 @@
 import 'package:doctor_app/helper/pinding.dart';
 import 'package:doctor_app/pages/booking_page.dart';
+import 'package:doctor_app/pages/home.dart';
+import 'package:doctor_app/pages/login_page.dart';
+
 import 'package:doctor_app/pages/onboarding_page.dart';
 import 'package:doctor_app/theme/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,8 +13,9 @@ import 'package:intl/date_symbol_data_local.dart';
 
 
 import 'firebase_options.dart';
+import 'pages/Doctor/appointmentPage.dart';
 
-void main() async {
+void main() async { 
   initializeDateFormatting();
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -31,6 +35,7 @@ class MyApp extends StatelessWidget {
       locale: Locale('ar'),
       initialBinding: Binding(),
       debugShowCheckedModeBanner: false,
+
       title: 'Medical Advice',
       theme: ThemeData(
         primaryColor: primary,

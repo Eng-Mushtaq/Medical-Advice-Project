@@ -1,4 +1,7 @@
 import 'package:doctor_app/controller/loginController.dart';
+import 'package:doctor_app/pages/SignUp.dart';
+import 'package:doctor_app/pages/category.dart';
+import 'package:doctor_app/pages/categoryPage.dart';
 import 'package:doctor_app/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -86,22 +89,21 @@ class LoginScreen extends StatelessWidget {
                               SizedBox(
                                 height: height * 0.01,
                               ),
-                             SizedBox(
-                                      width: width,
-                                      height: height * 0.07,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.white,
-                                          shape: StadiumBorder(),
-                                        ),
-                                        onPressed: () {
-                                          loginController.signIn(
-                                              emialController.text,
-                                              passwordController.text);
-                                        },
-                                        child: loginController.isLoading.value
-                                  ? CircularProgressIndicator()
-                                  :  Row(
+                              SizedBox(
+                                width: width,
+                                height: height * 0.07,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    shape: StadiumBorder(),
+                                  ),
+                                  onPressed: () {
+                                    loginController.signIn(emialController.text,
+                                        passwordController.text);
+                                  },
+                                  child: loginController.isLoading.value
+                                      ? CircularProgressIndicator()
+                                      : Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: <Widget>[
@@ -118,18 +120,30 @@ class LoginScreen extends StatelessWidget {
                                                     color: Colors.black)),
                                           ],
                                         ),
-                                      ),
-                                    ),
+                                ),
+                              ),
                               SizedBox(
                                 height: height * 0.02,
                               ),
                               WidgetAnimator(
-                                Text(
-                                  'You Will be asked Question regarding your Qualifications!',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.black.withOpacity(0.5),
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'ليس لديك حساب !',
+                                      textAlign: TextAlign.center,
+                                      style: subTitle.copyWith(
+                                        color: Colors.black.withOpacity(0.5),
+                                      ),
+                                    ),
+                                    TextButton(
+                                        onPressed: () =>
+                                            Get.off(() => Category()),
+                                        child: Text(
+                                          'انشئ حساب جديد',
+                                          style: subTitle,
+                                        ))
+                                  ],
                                 ),
                               ),
                               SizedBox(
