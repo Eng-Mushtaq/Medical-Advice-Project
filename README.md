@@ -26,7 +26,9 @@ samples, guidance on mobile development, and a full API reference.
 **Login Screen** 
 
  <img src="https://user-images.githubusercontent.com/83551226/223773561-a648fa6f-8dc8-4137-95ba-82e0cb7bc152.jpg" width="250" height="50%" />
+ 
  **SignUp Screens** 
+ 
 <p float="left">
   <img src="https://user-images.githubusercontent.com/83551226/223773800-38530125-8791-4968-9704-e6aba61b9c2b.jpg" width="240" height="50%" />&nbsp;
   <img src="https://user-images.githubusercontent.com/83551226/223774133-428b29c8-b892-4119-93d1-cda8470ddc10.jpg" width="240" height="50%" />&nbsp; 
