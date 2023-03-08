@@ -23,9 +23,13 @@ samples, guidance on mobile development, and a full API reference.
   <img src="https://user-images.githubusercontent.com/83551226/223753616-dd1c0172-82ec-408a-94c1-a7f8399b5906.jpg" width="240" height="50%" />
 </p>
 
-**Login Screen** 
+**Login And Logout Screen** 
 
- <img src="https://user-images.githubusercontent.com/83551226/223773561-a648fa6f-8dc8-4137-95ba-82e0cb7bc152.jpg" width="250" height="50%" />
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/83551226/223773561-a648fa6f-8dc8-4137-95ba-82e0cb7bc152.jpg" width="240" height="50%" />&nbsp; &nbsp; &nbsp;
+  <img src="https://user-images.githubusercontent.com/83551226/223864025-48dfc42c-71be-4079-9494-374908942e87.jpg" width="240" height="50%" />
+</p>
+
  
  **SignUp Screens** 
  
@@ -43,7 +47,7 @@ samples, guidance on mobile development, and a full API reference.
   <img src="https://user-images.githubusercontent.com/83551226/223863836-a8956455-b2c3-450a-ac32-b6264176eba8.jpg" width="240" height="50%" />
 </p>
 
-**Users Info** 
+**Chat Screans** 
  
 <p float="left">
   <img src="https://user-images.githubusercontent.com/83551226/223864677-98837c77-8fb7-4949-8098-67f133351e78.jpg" width="240" height="50%" />&nbsp;
@@ -58,6 +62,7 @@ samples, guidance on mobile development, and a full API reference.
   <img src="https://user-images.githubusercontent.com/83551226/223864979-4bf012fb-1006-41c4-b779-29fe53193003.jpg" width="240" height="50%" />&nbsp; 
   <img src="https://user-images.githubusercontent.com/83551226/223865038-0fe9d797-c639-40c9-a37b-1fbb26552125.jpg" width="240" height="50%" />
 </p>
+
 
 
 
